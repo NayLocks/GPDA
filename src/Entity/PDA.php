@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PDARepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,16 @@ class PDA
      * @ORM\ManyToOne(targetEntity=SIM::class, inversedBy="pda")
      */
     private $pNoSim;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Documents::class, mappedBy="dNoPda")
+     */
+    private $documents;
+
+    public function __construct()
+    {
+        $this->documents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +183,36 @@ class PDA
     public function setPNoSim(?SIM $pNoSim): self
     {
         $this->pNoSim = $pNoSim;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Documents[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Documents $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->setDNoPda($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Documents $document): self
+    {
+        if ($this->documents->removeElement($document)) {
+            // set the owning side to null (unless already changed)
+            if ($document->getDNoPda() === $this) {
+                $document->setDNoPda(null);
+            }
+        }
 
         return $this;
     }
