@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+    <title>GPDA > {% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/RIBETRANS.jpg') }}" type="image/x-icon">
+
+    <script src="{{ asset('js/jquery-3.4.1.js') }}" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/materialize.min.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/multi-select/css/multi-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/dropify/css/dropify.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/nouislider/nouislider.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css') }}">
+    <link  rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <style>
+        .dataTables_filter, .dataTables_info { display: none; }
+    </style>
+    {% block stylesheets %}{% endblock %}
+
+
+    <script>
+        function test(){
+            window.print();
+        }
+    </script>
+
+</head>
+
+<body class="theme-blush">
+{% if app.request.get('_route') != "app_login" %}
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="m-t-30"><img src="{{ asset('img/RIBETRANS.jpg') }}" width="170" height="170" alt=""></div>
+            <p>Chargement en cours...</p>
+        </div>
+    </div>
+
+    <aside id="leftsidebar" class="sidebar">
+        <div class="navbar-brand">
+            <a href="#"><img src="{{ asset('img/RIBETRANS.jpg') }}" width="50" alt="RibeTrans"><span class="m-l-10">Gestion PDA</span></a>
+        </div>
+        <div class="menu">
+            <ul class="list">
+                <li><a href="{{ path('dashboard') }}"><i class="zmdi zmdi-home"></i><span>Tableau de Bord</span></a></li>
+                <li><a href="{{ path('pda') }}"><i class="zmdi zmdi-library"></i><span>Liste des PDA</span></a></li>
+{#                <li><a href="{{ path('echangeHubOne') }}"><i class="zmdi zmdi-truck"></i><span>Liste des transferts</span></a></li>#}
+{#                <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-format-list-bulleted"></i><span>Documents</span></a>#}
+{#                    <ul class="ml-menu">#}
+{#                        <li><a href="{{ path('brHOD') }}"><i class="zmdi zmdi-format-list-bulleted"></i><span>Bon de Retours</span></a></li>#}
+{#                        <li><a href="{{ path('blHOD') }}"><i class="zmdi zmdi-format-list-bulleted"></i><span>Bon de Livraisons</span></a></li>#}
+{#                        <li><a href="{{ path('factHOD') }}"><i class="zmdi zmdi-format-list-bulleted"></i><span>Factures / Suivi La Poste</span></a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li><a href="{{ path('settings') }}"><i class="zmdi zmdi-settings"></i><span>Paramètres</span></a></li>#}
+            </ul>
+        </div>
+    </aside>
+
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-sm-12">
+                <h2 style="float: left">{% block pageTitle %}{% endblock %}</h2>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% block body %}{% endblock %}
+</section>
+
+<script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+<script src="{{ asset('assets/plugins/multi-select/js/jquery.multi-select.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-spinner/js/jquery.spinner.js') }}"></script>
+<script src="{{ asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+<script src="{{ asset('assets/plugins/nouislider/nouislider.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/js/pages/tables/jquery-datatable.js') }}"></script>
+<script src="{{ asset('assets/plugins/dropify/js/dropify.min.js') }}"></script>
+<script src="{{ asset('assets/js/pages/forms/dropify.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

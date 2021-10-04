@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% set companyColor = {"HUB ONE": "lightpink",
+    "ARDENNES PRIMEURS": "cyan",
+    "DIFFORVERT": "lightseagreen",
+    "RIBEGROUPE": "orange",
+    "RIBEPRIM": "lightgreen",
+    "RODAFRUITS": "yellow",
+    "VELDERS": "green",
+    "TEST": "lightgray",
+    "AUTRES": "#fff" } %}
+{% set i = 0 %}
+
+{% block title %}PDA{% endblock %}
+{% block pageTitle %}Liste des PDA{% endblock %}
+
+{% block stylesheets %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('js/dataTable.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table id="vehiculeTable" class="table table-hover product_item_list c_table theme-color">
+                        <thead>
+                        <tr style="text-align: center">
+                            <th>Société</th>
+                            <th>N° PDA</th>
+                            <th>IMEI</th>
+                            <th>N° Série</th>
+                            <th>N° Téléphone</th>
+                            <th>N° Sim</th>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for pda in allPDA %}
+                            {% if pda.pCompany.cName != "TEST" %}
+                                {% set i = i+1 %}
+                                <tr style="text-align: center; background-color: {{ companyColor[pda.pCompany.cName] }}">
+                                    <td><strong>{{ pda.pCompany.cName }}</strong></td>
+                                    <td><strong>{{ pda.pNoPDA }}</strong></td>
+                                    <td><strong>{{ pda.pImei }}</strong></td>
+                                    <td><strong>{{ pda.pNoSerial }}</strong></td>
+                                    <td><strong>{{ pda.pNoSim.sNoPhone }}</strong></td>
+                                    <td><strong>{{ pda.pNoSim.sNoSim }}</strong></td>
+                                    <td><strong>{{ pda.pFirstname }}</strong></td>
+                                    <td><strong>{{ pda.pLastname }}</strong></td>
+                                    <td>
+                                        <a href="#" class="btn btn-danger btn-round" style="width: 100%; font-size: 15px;">DETAIL</a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <th colspan="9">TOTAL PDA : {{ i }} PDA</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% set companyColor = {"HUB ONE": "lightpink",
+    "ARDENNES PRIMEURS": "cyan",
+    "DIFFORVERT": "lightseagreen",
+    "RIBEGROUPE": "orange",
+    "RIBEPRIM": "lightgreen",
+    "RODAFRUITS": "yellow",
+    "VELDERS": "green",
+    "TEST": "lightgray",
+    "AUTRES": "#fff" } %}
+{% set i = 0 %}{% set i = 0 %}
+
+{% block title %}Tableau de Bords{% endblock %}
+{% block pageTitle %}Tableau de Bords{% endblock %}
+
+{% block stylesheets %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('js/dataTable.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row clearfix">
+
+            {% for company in companies %}
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="card widget_2 big_icon zmdi-truck"  style="background-color: {{ companyColor[company.cName] }}">
+                        <div class="body">
+                            <h6>{{ company.cName }}</h6>
+                            <h2>{{ pda[i].nb }} <small class="info">sur {{ total }}</small></h2>
+                            <small>{{ percent[i] }}% du parc</small>
+                            <div class="progress">
+                                <div class="progress-bar " role="progressbar" aria-valuenow="{{ percent[i] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ percent[i] }}%;background-color: {{ companyColor[company.cName] }}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% set i = i+1 %}
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
