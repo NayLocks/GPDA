@@ -63,13 +63,16 @@
 {#                        <li><a href="{{ path('factHOD') }}"><i class="zmdi zmdi-format-list-bulleted"></i><span>Factures / Suivi La Poste</span></a></li>#}
 {#                    </ul>#}
 {#                </li>#}
-                <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-settings"></i><span>Utilisateurs</span></a>
-                       <ul class="ml-menu">
-                          <li><a href="#"><i class="zmdi zmdi-settings"></i><span>Utilisateurs WEB</span></a></li>
-                          <li><a href="#"><i class="zmdi zmdi-settings"></i><span>Utilisateurs Appli</span></a></li>
-                       </ul>
+                <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-settings"></i><span>Paramètres</span></a>
+                    <ul class="ml-menu">
+                        <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-accounts-list-alt"></i><span>Utilisateurs</span></a>
+                            <ul class="ml-menu">
+                                <li><a href="{{ path('usersWEB') }}"><i class="zmdi zmdi-accounts"></i><span>Utilisateurs WEB</span></a></li>
+                                <li><a href="{{ path('usersAppli') }}"><i class="zmdi zmdi-accounts"></i><span>Utilisateurs Appli</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
-{#                <li><a href="{{ path('settings') }}"><i class="zmdi zmdi-settings"></i><span>Paramètres</span></a></li>#}
             </ul>
         </div>
     </aside>
