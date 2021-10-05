@@ -2,8 +2,8 @@
 
 {% set i = 0 %}
 
-{% block title %}Bon de Retours{% endblock %}
-{% block pageTitle %}Liste des Bon de Retours{% endblock %}
+{% block title %}Factures{% endblock %}
+{% block pageTitle %}Liste des Factures{% endblock %}
 
 {% block stylesheets %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,24 +20,27 @@
                     <table id="vehiculeTable" class="table table-hover product_item_list c_table theme-color">
                         <thead>
                         <tr style="text-align: center">
-                            <th>N° PDA</th>
-                            <th>N° Série</th>
+                            <th>N° SUIVI</th>
+                            <th>MONTANT</th>
                             <th>Date</th>
                             <th>Code</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for br in allBR %}
-                            {% if br.dType == "BR" %}
+                        {% for fact in allFACT %}
+                            {% if fact.dType == "FACT" %}
                                 {% set i = i+1 %}
                                 <tr style="text-align: center">
-                                    <td><strong>{{ br.dNoPda.pNoPda }}</strong></td>
-                                    <td><strong>{{ br.dNoPda.pNoSerial }}</strong></td>
-                                    <td><strong>{{ br.dDate|date('d/m/Y') }}</strong></td>
-                                    <td><strong>{{ br.dType }}</strong></td>
+                                    <td><strong>{{ fact.dPathLaPoste }}</strong></td>
+                                    <td><strong>{{ fact.dMontant }} €</strong></td>
+                                    <td><strong>{{ fact.dDate|date('d/m/Y') }}</strong></td>
+                                    <td><strong>{{ fact.dType }}</strong></td>
                                     <td>
-                                        <a href="http://ftp.ribegroupe.com/Appli/Gestion_PDA/Documents/BR/{{ br.dPath }}" class="btn btn-danger btn-round" style="width: 100%; font-size: 15px;">VOIR LE BR</a>
+                                        <a target="_blank" href="http://ftp.ribegroupe.com/Appli/Gestion_PDA/Documents/FACT/{{ fact.dPath }}" class="btn btn-danger btn-round" style="width: 100%; font-size: 15px;">VOIR LA FACTURE</a>
+                                    </td>
+                                    <td>
+                                        <a target="_blank" href="https://www.laposte.fr/outils/suivre-vos-envois?code={{ fact.dPathLaPoste }}" class="btn btn-warning btn-round" style="width: 100%; font-size: 15px;">SUIVI COLIS</a>
                                     </td>
                                 </tr>
                             {% endif %}
@@ -45,7 +48,7 @@
                         </tbody>
                         <thead>
                         <tr>
-                            <th colspan="9">TOTAL : {{ i }} Bon de Retours</th>
+                            <th colspan="9">TOTAL : {{ i }} Facturess</th>
                         </tr>
                         </thead>
                     </table>

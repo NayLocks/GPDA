@@ -1,0 +1,131 @@
+{% set monthFormat = {"01": "Janvier", "02": "Février", "03": "Mars", "04": "Avril", "05": "Mai", "06": "Juin", "07": "Juillet", "08": "Août", "09": "Septembre", "10": "Octobre", "11": "Novembre", "12": "Décembre"} %}
+{% set nbSection = 1 %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <style type="text/css">
+
+        body {
+            font-family: sans-serif;
+            margin: 0.5cm 0;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        #header{
+            position: relative;
+            top: -30px;
+            left: 0;
+            right: 0;
+        }
+
+        #footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            font-size: 0.9em;
+        }
+
+        #footer {
+            bottom: 60px;
+        }
+
+        #header table,
+        #footer table {
+            width: 100%;
+            border-collapse: collapse;
+            border: none;
+        }
+
+        #header td,
+        #footer td {
+            padding: 0;
+            width: 50%;
+        }
+
+        .page-number {
+            text-align: right;
+        }
+
+        .page-number:before {
+            content: "Page " counter(page);
+        }
+
+        hr {
+            page-break-after: always;
+            border: 0;
+        }
+        .colorSystem{
+            color: #1F497D;
+        }
+    </style>
+</head>
+
+<body>
+<div class="section section1">
+    <div id="header">
+        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('img/hubone.png') }}" width="30%" alt="logo">
+        <h2 style="text-align: center; color: #004A82">FICHE DE REPARATION « ECHANGE A RECEPTION »</h2>
+    </div>
+
+    <div style="float: right; color: #1F497D;">
+        DATE : {{ jour }}/{{ mois }}/{{ annee }}
+        {#                DATE : 30/04/2021#}
+    </div>
+    <br>
+    <br>
+    <div style="text-align: center; color: #1F497D;">
+        <strong>
+            A retourner au Service Client de HUB ONE MOBILITY<br>
+            5, Route de Paisy, 69570 DARDILLY<br>
+            Tél. 0892.702.205 <i>(0,34€ TTC/min depuis poste fixe)</i> - <a href="mailto:support-mobility@hubone.fr">support-mobility@hubone.fr</a>
+        </strong>
+    </div>
+    <br>
+    <div style="padding: 10px; border-top: 2px solid black ;border-bottom: 2px solid black;">
+        <div style="float: left">
+            <u class="colorSystem">SOCIETE </u>: {{ setting.company }}<br><br>
+            <u class="colorSystem">INTERLOCUTEUR </u>: {{ setting.interlocuteur }}<br><br>
+            <u class="colorSystem">ADRESSE </u>: {{ setting.adresse }}<br><br>
+            <u class="colorSystem">CP </u>: {{ setting.codePostal }}<br><br>
+            <u class="colorSystem">TEL </u>: {{ setting.telephone }}<br><br>
+            <u class="colorSystem">Adresse mail <strong style="color: red;">(impératif)</strong> </u>: {{ setting.adresseMail }}<br><br>
+        </div>
+        <div style="text-align: left">
+            <br><br>
+            <br><br>
+            <br><br>
+            <u class="colorSystem">VILLE </u>: {{ setting.ville }}<br><br>
+            <u class="colorSystem">FAX </u>: {{ setting.fax }}<br><br>
+        </div>
+    </div>
+    <br>
+    <div style="border-bottom: 2px solid black; padding-bottom: 5px; margin-bottom: 5px;">
+        <u class="colorSystem">TYPE DE MATERIEL </u>:  {{ pda.type }}<br><br>
+        <u class="colorSystem">NUMERO DE SERIE (1 PAR FICHE) </u>: {{ pda.serialNumber }}<br><br>
+        <input class="colorSystem" type="checkbox" /> <test class="colorSystem">SOUS GARANTIE</test><br>
+        <input class="colorSystem" type="checkbox" /> <test class="colorSystem">HORS GARANTIE / HORS CONTRAT DE MAINTENANCE</test><br>
+        <input class="colorSystem" type="checkbox" checked/> <test class="colorSystem">SOUS CONTRAT DE MAINTENANCE - N° DE CONTRAT : ..... 1806170/731 .....</test><br><br>
+        <strong style="text-align: justify; color: red;">
+            MERCI DE NE PAS ENVOYER DE CONSOMMABLES TELS QUE BATTERIES, ANTENNES, CABLES, BOITIER, SUPPORT, STYLETS, MANUELS OU EMBALLAGE D'ORIGINE. NOUS NE POUVONS GARANTIR LEUR RETOUR.
+        </strong>
+    </div>
+    <div>
+        <u class="colorSystem">TYPE DE PANNE / COMMENTAIRES <strong style="color: red;">OBLIGATOIRE</strong> :</u>
+    </div>
+    <br>
+    <div style="border: 1px solid black;padding: 2px; height: 20%">
+        {{ setting.problem }}
+    </div>
+    <br>
+    <div id="footer" style="text-align: center">
+        <strong>
+            Hub One SA<br>
+            Siège : Continental Square 1 - Bâtiment Mercure, 2 Place de Londres 93290 Tremblay en France<br>
+            SAV : 5 route du Paisy 69570 DARDILLY<br>
+            SA au capital de 41 136 840 Euros<br>
+            SIRET 437 947 666 00131 / TVA INTRA N° FR 29 437 947 666 / RCS Bobigny 437 947 666
+        </strong>
+    </div>
+</div>
+</body>
+</html>

@@ -22,8 +22,9 @@ class DocumentsController extends AbstractController
         $allDocuments = $this->getDoctrine()->getRepository(Documents::class);
         $bl = $allDocuments->findAll();
 
-        return $this->render('PDA/documents_BL.html.twig', ['allBL' => $bl]);
+        return $this->render('Documents/documents_BL.html.twig', ['allBL' => $bl]);
     }
+
     /**
      * @Route("/br", name="br")
      */
@@ -32,7 +33,18 @@ class DocumentsController extends AbstractController
         $allDocuments = $this->getDoctrine()->getRepository(Documents::class);
         $br = $allDocuments->findAll();
 
-        return $this->render('PDA/documents_BR.html.twig', ['allBR' => $br]);
+        return $this->render('Documents/documents_BR.html.twig', ['allBR' => $br]);
+    }
+
+    /**
+     * @Route("/factures", name="fact")
+     */
+    public function FACT(Request $request)
+    {
+        $allDocuments = $this->getDoctrine()->getRepository(Documents::class);
+        $fact = $allDocuments->findAll();
+
+        return $this->render('Documents/documents_FACT.html.twig', ['allFACT' => $fact]);
     }
 }
 

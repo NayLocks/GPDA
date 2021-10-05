@@ -42,6 +42,11 @@ class Documents
      */
     private $dPathLaPoste;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $dMontant;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Documents
     public function setDPathLaPoste(string $dPathLaPoste): self
     {
         $this->dPathLaPoste = $dPathLaPoste;
+
+        return $this;
+    }
+
+    public function getDMontant(): ?string
+    {
+        return $this->dMontant;
+    }
+
+    public function setDMontant(string $dMontant): self
+    {
+        $this->dMontant = $dMontant;
 
         return $this;
     }

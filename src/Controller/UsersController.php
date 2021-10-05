@@ -23,7 +23,7 @@ class UsersController extends AbstractController
         $allUsersWEB = $this->getDoctrine()->getRepository(User::class);
         $usersWEB = $allUsersWEB->findAll();
 
-        return $this->render('PDA/users_web.html.twig', ['allUsers' => $usersWEB]);
+        return $this->render('Users/users_web.html.twig', ['allUsers' => $usersWEB]);
     }
 
     /**
@@ -34,7 +34,7 @@ class UsersController extends AbstractController
         $allUsersAppli = $this->getDoctrine()->getRepository(Users::class);
         $usersAppli = $allUsersAppli->findAll();
 
-        return $this->render('PDA/users_appli.html.twig', ['allUsers' => $usersAppli]);
+        return $this->render('Users/users_appli.html.twig', ['allUsers' => $usersAppli]);
     }
 }
 
