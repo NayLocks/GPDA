@@ -7,6 +7,7 @@ use App\Entity\SettingsRetour;
 use DateTime;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Ijanki\Bundle\FtpBundle\Exception\FtpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +17,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SettingsRetourController extends AbstractController
 {
     /**
-     * @Route("/fiche_retour/", name="ficheRetour")
+     * @Route("/fiche_retour/{id}", name="ficheRetour")
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
         $allPDA = $this->getDoctrine()->getRepository(PDA::class);
-        $pda = $allPDA->findOneBy(array('id' => 6));
+        $pda = $allPDA->findOneBy(array('id' => $id));
 
         $allSettings = $this->getDoctrine()->getRepository(SettingsRetour::class);
         $setting = $allSettings->findOneBy(array('id' => 1));
@@ -46,21 +47,9 @@ class SettingsRetourController extends AbstractController
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
             $output = $dompdf->output();
-            $pdfFilepath =  'PDF/BR_'.$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
-            $path =  "BR_".$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
+            $pdfFilepath =  'PDF/BR_'.$annee.'_'.$mois.'_'.$jour."_".$pda->getPNoSerial().".pdf";
+            $path =  'BR_'.$annee.'_'.$mois.'_'.$jour.'_'.$pda->getPNoSerial().'.pdf';
             file_put_contents($pdfFilepath, $output);
-
-        $ftp_host     = 'ftp.ribegroupe.com';
-        $ftp_user     = 'depot';
-        $ftp_pass     = 'depot';
-        $local_file   = 'http://gpda.ribetrans.com/'.$pdfFilepath;
-        $distant_file = 'Appli/Gestion_PDA/Documents/BR/'.$path;
-
-        $conn_id = ftp_connect($ftp_host);
-        $login_result = ftp_login($conn_id, $ftp_user, $ftp_pass);
-        ftp_pasv($conn_id, true);
-        ftp_close($conn_id);
-
 
             /*$allTypeDocuments = $this->getDoctrine()->getRepository(TypeDocuments::class);
             $code = $allTypeDocuments->findOneBy(array('code' => "BR"));
