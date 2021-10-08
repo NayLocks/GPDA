@@ -88,7 +88,7 @@ class SettingsRetourController extends AbstractController
             $entitymanager->persist($transfert);
             $entitymanager->flush();*/
 
-            return $this->redirect('/'.$pdfFilepath);
+            return $this->redirect($pdfFilepath);
         //}
 
         //return $this->render('GenPDA/HODGenBR.html.twig', ['form' => $form->createView(), 'pda' => $pda]);
