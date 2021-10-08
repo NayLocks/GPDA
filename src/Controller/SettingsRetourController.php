@@ -46,9 +46,21 @@ class SettingsRetourController extends AbstractController
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
             $output = $dompdf->output();
-            $pdfFilepath =  'http://ftp.ribegroupe.com/Appli/Gestion_PDA/Documents/BR/BR_'.$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
-            $path =  "http://ftp.ribegroupe.com/Appli/Gestion_PDA/Documents/BR/BR_".$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
+            $pdfFilepath =  'PDF/BR_'.$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
+            $path =  "BR_".$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
             file_put_contents($pdfFilepath, $output);
+
+        $ftp_host     = 'ftp.ribegroupe.com';
+        $ftp_user     = 'depot';
+        $ftp_pass     = 'depot';
+        $local_file   = 'http://gpda.ribetrans.com/'.$pdfFilepath;
+        $distant_file = 'Appli/Gestion_PDA/Documents/BR/'.$path;
+
+        $conn_id = ftp_connect($ftp_host);
+        $login_result = ftp_login($conn_id, $ftp_user, $ftp_pass);
+        ftp_pasv($conn_id, true);
+        ftp_close($conn_id);
+
 
             /*$allTypeDocuments = $this->getDoctrine()->getRepository(TypeDocuments::class);
             $code = $allTypeDocuments->findOneBy(array('code' => "BR"));
@@ -88,7 +100,7 @@ class SettingsRetourController extends AbstractController
             $entitymanager->persist($transfert);
             $entitymanager->flush();*/
 
-            return $this->redirect($pdfFilepath);
+            return $this->redirect('/'.$pdfFilepath);
         //}
 
         //return $this->render('GenPDA/HODGenBR.html.twig', ['form' => $form->createView(), 'pda' => $pda]);
