@@ -68,8 +68,8 @@
     </div>
 
     <div style="float: right; color: #1F497D;">
-        DATE : {{ jour }}/{{ mois }}/{{ annee }}
-        {#                DATE : 30/04/2021#}
+{#        DATE : {{ jour }}/{{ mois }}/{{ annee }}#}
+                        DATE : 07/10/2021
     </div>
     <br>
     <br>
@@ -83,25 +83,25 @@
     <br>
     <div style="padding: 10px; border-top: 2px solid black ;border-bottom: 2px solid black;">
         <div style="float: left">
-            <u class="colorSystem">SOCIETE </u>: {{ setting.company }}<br><br>
-            <u class="colorSystem">INTERLOCUTEUR </u>: {{ setting.interlocuteur }}<br><br>
-            <u class="colorSystem">ADRESSE </u>: {{ setting.adresse }}<br><br>
-            <u class="colorSystem">CP </u>: {{ setting.codePostal }}<br><br>
-            <u class="colorSystem">TEL </u>: {{ setting.telephone }}<br><br>
-            <u class="colorSystem">Adresse mail <strong style="color: red;">(impératif)</strong> </u>: {{ setting.adresseMail }}<br><br>
+            <u class="colorSystem">SOCIETE </u>: {{ setting.srCompany }}<br><br>
+            <u class="colorSystem">INTERLOCUTEUR </u>: {{ setting.srInterlocuteur }}<br><br>
+            <u class="colorSystem">ADRESSE </u>: {{ setting.srAddress }}<br><br>
+            <u class="colorSystem">CP </u>: {{ setting.srZipCode }}<br><br>
+            <u class="colorSystem">TEL </u>: {{ setting.srPhone }}<br><br>
+            <u class="colorSystem">Adresse mail <strong style="color: red;">(impératif)</strong> </u>: {{ setting.srMail }}<br><br>
         </div>
         <div style="text-align: left">
             <br><br>
             <br><br>
             <br><br>
-            <u class="colorSystem">VILLE </u>: {{ setting.ville }}<br><br>
-            <u class="colorSystem">FAX </u>: {{ setting.fax }}<br><br>
+            <u class="colorSystem">VILLE </u>: {{ setting.srCity }}<br><br>
+            <u class="colorSystem">FAX </u>: {{ setting.srFax }}<br><br>
         </div>
     </div>
     <br>
     <div style="border-bottom: 2px solid black; padding-bottom: 5px; margin-bottom: 5px;">
-        <u class="colorSystem">TYPE DE MATERIEL </u>:  {{ pda.type }}<br><br>
-        <u class="colorSystem">NUMERO DE SERIE (1 PAR FICHE) </u>: {{ pda.serialNumber }}<br><br>
+        <u class="colorSystem">TYPE DE MATERIEL </u>:  {{ pda.pType }}<br><br>
+        <u class="colorSystem">NUMERO DE SERIE (1 PAR FICHE) </u>: {{ pda.pNoSerial }}<br><br>
         <input class="colorSystem" type="checkbox" /> <test class="colorSystem">SOUS GARANTIE</test><br>
         <input class="colorSystem" type="checkbox" /> <test class="colorSystem">HORS GARANTIE / HORS CONTRAT DE MAINTENANCE</test><br>
         <input class="colorSystem" type="checkbox" checked/> <test class="colorSystem">SOUS CONTRAT DE MAINTENANCE - N° DE CONTRAT : ..... 1806170/731 .....</test><br><br>
@@ -114,7 +114,7 @@
     </div>
     <br>
     <div style="border: 1px solid black;padding: 2px; height: 20%">
-        {{ setting.problem }}
+        {{ pda.pProblem }}
     </div>
     <br>
     <div id="footer" style="text-align: center">
