@@ -16,9 +16,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SettingsRetourController extends AbstractController
 {
     /**
-     * @Route("/fiche_retour/{id}", name="ficheRetour")
+     * @Route("/fiche_retour/", name="ficheRetour")
      */
-    public function index(Request $request, $id)
+    public function index(Request $request)
     {
         $allPDA = $this->getDoctrine()->getRepository(PDA::class);
         $pda = $allPDA->findOneBy(array('id' => 6));
