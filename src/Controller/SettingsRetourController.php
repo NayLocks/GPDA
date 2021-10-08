@@ -46,8 +46,8 @@ class SettingsRetourController extends AbstractController
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
             $output = $dompdf->output();
-            $pdfFilepath =  'PDF/BR_'.$pda->getSerialNumber().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
-            $path =  "BR_".$pda->getSerialNumber().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
+            $pdfFilepath =  'PDF/BR_'.$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
+            $path =  "BR_".$pda->getPNoSerial().'_'.$annee.'_'.$mois.'_'.$jour.".pdf";
             file_put_contents($pdfFilepath, $output);
 
             /*$allTypeDocuments = $this->getDoctrine()->getRepository(TypeDocuments::class);
